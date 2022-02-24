@@ -67,13 +67,60 @@ public class Application {
 
       if (  playerId.equals(arenaUpdate._links.self.href) ) {
         System.out.println("Found myself " + playerId);
+        myState = player;
       } else {
         System.out.println("Not myself " + playerId);
       }
 
     }
 
+    String myDirection = myState.direction;
 
+
+    for (Map.Entry<String, PlayerState> playerMap : arenaUpdate.arena.state.entrySet() ) {
+      PlayerState player = playerMap.getValue()；
+      String playerId = playerMap.getKey();
+      if ( myState == player ) {
+        System.out.println("Found myself!");
+        next;
+      }
+
+
+      if ( "N".equals(myDirection) || "S".equals(myDirection) ) {
+        if ( myState.x.intValue() == player.x ) {  // same vertical line
+          int distance = player.y - myState.y;
+          if ( distance > 0 && distance <= 3  && "N".equals(myDirection)) {
+            return "F";
+          } else {
+            if ( distance <0  && distance >= -3  && "S".equals(myDirection)) {
+              return "F";
+            }
+          }
+        }
+      }
+
+      if ( "E".equals(myDirection) || "W".equals(myDirection) ) {
+        if ( myState.y.intValue() == player.y ) {  // same horizontal line
+          int distance = player.x - myState.x;
+          if ( distance > 0 && distance <= 3  && "E".equals(myDirection)) {
+            return "F";
+          } else {
+            if ( distance <0  && distance >= -3  && "W".equals(myDirection)) {
+              return "F";
+            }
+          }
+        }
+      }
+
+      String[] commands = new String[]{"F", "R"};
+      int i = new Random().nextInt(2);
+      return commands[i];
+
+
+    }
+
+
+    System.out.println("Return random....");
     String[] commands = new String[]{"F", "R", "L", "T"};
     int i = new Random().nextInt(4);
     return commands[i];
