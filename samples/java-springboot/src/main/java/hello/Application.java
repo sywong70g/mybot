@@ -55,7 +55,25 @@ public class Application {
 
   @PostMapping("/**")
   public String index(@RequestBody ArenaUpdate arenaUpdate) {
-    System.out.println(arenaUpdate + " debug 2");
+    System.out.println(arenaUpdate + " debug 3");
+
+    System.out.println("AreenaUpdate is " + arenaUpdate);
+
+    PlayerState myState = null;
+
+    for (Map.Entry<String, PlayerState> playerMap : arenaUpdate.arena.state.entrySet() ) {
+      PlayerState player = playerMap.getValue()；
+      String playerId = playerMap.getKey();
+
+      if (  playerId.equals(arenaUpdate._links.self.href) ) {
+        System.out.println("Found myself " + playerId);
+      } else {
+        System.out.println("Not myself " + playerId);
+      }
+
+    }
+
+
     String[] commands = new String[]{"F", "R", "L", "T"};
     int i = new Random().nextInt(4);
     return commands[i];
