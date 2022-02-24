@@ -89,10 +89,10 @@ public class Application {
       if ( "N".equals(myDirection) || "S".equals(myDirection) ) {
         if ( myState.x.intValue() == player.x ) {  // same vertical line
           int distance = player.y - myState.y;
-          if ( distance > 0 && distance <= 3  && "N".equals(myDirection)) {
+          if ( distance > 0 && distance <= 3  && "S".equals(myDirection)) {
             return "F";
           } else {
-            if ( distance <0  && distance >= -3  && "S".equals(myDirection)) {
+            if ( distance <0  && distance >= -3  && "N".equals(myDirection)) {
               return "F";
             }
           }
