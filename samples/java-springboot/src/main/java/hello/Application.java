@@ -62,7 +62,7 @@ public class Application {
     PlayerState myState = null;
 
     for (Map.Entry<String, PlayerState> playerMap : arenaUpdate.arena.state.entrySet() ) {
-      PlayerState player = playerMap.getValue()；
+      PlayerState player = playerMap.getValue();
       String playerId = playerMap.getKey();
 
       if (  playerId.equals(arenaUpdate._links.self.href) ) {
@@ -78,11 +78,11 @@ public class Application {
 
 
     for (Map.Entry<String, PlayerState> playerMap : arenaUpdate.arena.state.entrySet() ) {
-      PlayerState player = playerMap.getValue()；
+      PlayerState player = playerMap.getValue();
       String playerId = playerMap.getKey();
       if ( myState == player ) {
         System.out.println("Found myself!");
-        next;
+        continue;
       }
 
 
